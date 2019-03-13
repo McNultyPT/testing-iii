@@ -10,16 +10,17 @@ describe('<Dashboard />', () => {
         render(<Dashboard />)
     });
 
-    // describe('toggleLocked()', () => {
-    //     it('it toggles truthy when clicked', () => {
-    //         const {  } = render(<Dashboard />);
-    //         const { getAllByTestId, queryByText, getByText } = render(<Controls />);
+    describe('toggleLocked()', () => {
+        it('it toggles when clicked', () => {
+            const { getByTestId, queryByText, getByText } = render(<Controls />);
 
-    //         const button = getAllByTestId(/toggleLock/i);
-    //         expect(getByText(/lock gate/i)).toBeInTheDocument();
+            const button1 = getByTestId('toggleLock');
+            const button2 = getByTestId('toggleOpen');
+            expect(getByTestId('toggleLock')).toHaveTextContent('Lock Gate');
 
-    //         fireEvent.click(button);
-    //         expect(getByText(/unlock gate/i)).toBeInTheDocument();
-    //     });
-    // });
+            fireEvent.click(button2);
+            fireEvent.click(button1);
+            expect(getByTestId('toggleLock')).toHaveTextContent('Unlock Gate');
+        });
+    });
 });
